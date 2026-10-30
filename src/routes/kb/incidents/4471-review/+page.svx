@@ -15,20 +15,37 @@ signature: Julian-Guillo / Codex / S01E03 / 2026-10-30
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 </script>
 
-The [original incident](/kb/incidents/4471/) calls this one known parser bug.
-The rendered evidence shows two causes. Keep separate engineering tickets for the
-shared parser and the booking form's date hint; one queued fix cannot cover both.
+The [original incident](/kb/incidents/4471/) called this one known parser bug.
+The rendered evidence shows two causes. Engineering has since closed #4471 with two
+different outcomes: the parser was fixed; the hint was not fixed because booking-v3
+was retired. Keep those outcomes separate from the report counts.
 
 <Callout kind="warn">
-This review covers the export dated 4 October 2026, not today's live desk queue.
-Rebuild against a new export before quoting current totals. A newer review date does
-not make the underlying data newer.
+Report counts cover the export dated 4 October 2026. Resolution status comes from the
+course's separate engineering update dated 5 October. Rebuild against a new export
+before quoting current totals; the review date does not make the data newer.
 </Callout>
+
+## Engineering outcome — 5 October 2026
+
+The [course's engineering update](https://hq.mega.dev/challenges/what-it-shows#engineering-update)
+reports **#4471 closed 05 oct**:
+
+| Cause | Engineering outcome | Our ticket |
+| --- | --- | --- |
+| Parser | **Fixed** — `fix(dates): parse dd/mm for eu locales` | [Parser issue #1](https://github.com/Julian-Guillo/mega-s01e03-what-it-shows/issues/1): completed |
+| Hint | **Won't fix** — booking-v3 form retired | [Hint issue #2](https://github.com/Julian-Guillo/mega-s01e03-what-it-shows/issues/2): not planned |
+
+Retiring a form is a different resolution from fixing its hint. Do not call the hint
+fixed, or infer that every anomalous report was explained. The update is the source of
+these statuses; no product patch or reproduction environment was supplied.
 
 ## Count by cause, not intake label
 
 <CauseTable ticket={4471} />
 
+The table preserves the export's original ticket ownership, including its “no ticket
+of its own” label. The linked engineering tickets and their outcomes are above.
 The table executes `causes.ts` against tenant locale and form configuration. The ticket
 export has overlapping pages: count each report ID once, then select reports merged
 into #4471. `meta.intakeTag` is an intake guess based on browser locale, not the cause.
@@ -42,9 +59,10 @@ The “tagged as” column exposes that disagreement.
   from Alder Physio, Copper Studio and Pale Harbour. R-41230 belongs here even though
   intake called it parser. R-41205 belongs to parser even though intake called it hint.
 
-Fix the parser to respect the input's declared date order. Separately, make booking-v3's
-hint agree with its actual locale-aware input handling. Test those paths separately;
-matching symptoms do not prove the same fix.
+The parser needed to respect the input's declared date order. The separate hint
+mismatch needed consistent form instructions or retirement of the affected form.
+Engineering reports the former as fixed and the latter as retired. Test the parser's
+remaining paths separately; matching symptoms do not prove the same fix.
 
 ### Reports that need another look
 
@@ -68,7 +86,8 @@ rendered date, timezone and delivery timestamps before asserting another defect 
 
 Received and merged are different clocks. The July merge spike is a desk action,
 not the date every problem began. Reports arrived from April through October and
-continued after the bulk merge. “Known” and “fix queued” do not mean resolved.
+continued after the bulk merge. “Known” and “fix queued” did not mean resolved;
+resolution is established separately by the 5 October engineering update above.
 
 ## Replace subject-only triage
 

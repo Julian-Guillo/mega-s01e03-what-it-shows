@@ -52,3 +52,10 @@ Open `http://localhost:4173/kb/incidents/4471-review/`. The original export and 
 Counts are computed from the export's unique report IDs and supplied tenant-aware classifier: 379 parser, 33 hint.
 The parser count includes five anomalous reports explicitly retained for investigation, not a proven third cause.
 This is the course's fictional support data dated 4 October 2026, not a current production incident.
+
+The course subsequently revealed its 5 October engineering update: #4471 closed,
+parser **fixed** (`fix(dates): parse dd/mm for eu locales`), hint **won't fix**
+(booking-v3 form retired). The signed review now records these distinct outcomes,
+linked to [parser issue #1](https://github.com/Julian-Guillo/mega-s01e03-what-it-shows/issues/1)
+and [hint issue #2](https://github.com/Julian-Guillo/mega-s01e03-what-it-shows/issues/2).
+Those statuses are course-reported; no independent product reproduction was supplied.
